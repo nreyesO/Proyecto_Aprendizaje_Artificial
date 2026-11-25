@@ -1,0 +1,12 @@
+[
+  {
+    "arranque": 1,
+    "get": 200,
+    "predicciones_verificadas": 3
+  },
+  {
+    "arranque": 2,
+    "get": 200,
+    "predicciones_verificadas": 3
+  }
+]

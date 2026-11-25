@@ -1,0 +1,12 @@
+{
+  "origen": "Reconstrucción del árbol del notebook de la entrega anterior",
+  "dataset_sha256": "c33c27f54f27d1d17d395c4de3850b0ec014833d791830e020e4ee5eacbb58cb",
+  "registros": 65,
+  "entrenamiento": 52,
+  "prueba": 13,
+  "random_state": 42,
+  "sklearn_version": "1.8.0",
+  "exactitud_prueba": 1.0,
+  "prediccion_tras_recarga": 0,
+  "predicciones_identicas_tras_recarga": true
+}

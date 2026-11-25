@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StudyBot · Evaluar un lugar</title>
+  <style>
+    :root {font-family:system-ui,sans-serif;color:#14243b;background:#edf2f8;font-size:16px}
+    * {box-sizing:border-box} body {margin:0} main {max-width:900px;margin:40px auto;padding:0 22px}
+    header p {max-width:680px;line-height:1.6;color:#42536b} h1 {font-size:2.5rem;margin:12px 0}
+    .marca {font-weight:700;color:#3156a5;letter-spacing:.08em} form {background:white;border:1px solid #ccd7e6;border-radius:16px;padding:28px}
+    .campos {display:grid;grid-template-columns:1fr 1fr;gap:22px} label {display:block;font-weight:600;margin-bottom:8px;overflow-wrap:anywhere}
+    input {width:100%;padding:12px;border:1px solid #7b8ca3;border-radius:7px;font:inherit}
+    input:focus-visible,button:focus-visible {outline:3px solid #6b93f5;outline-offset:3px}
+    button {margin-top:26px;padding:14px 24px;border:0;border-radius:8px;background:#234ea5;color:white;font:inherit;font-weight:700;cursor:pointer}
+    .resultado,.error {padding:20px 24px;border-radius:10px;margin:20px 0}
+    .resultado {background:#e1f3ec;border:1px solid #639981} .no {background:#fff1df;border-color:#bc8741}
+    .resultado strong {display:block;font-size:1.8rem;margin-top:6px} .error {background:#fff0ef;border:1px solid #b6423d;color:#822621}
+    .nota {color:#42536b;line-height:1.6;font-size:.95rem} @media(max-width:600px){.campos{grid-template-columns:1fr}main{margin:24px auto}form{padding:20px}h1{font-size:2rem}}
+  </style>
+</head>
+<body><main>
+  <header><span class="marca">STUDYBOT</span><h1>¿Es un lugar apto para estudiar?</h1>
+  <p>Describe las características del lugar para obtener una predicción sobre su aptitud para estudiar durante 30 minutos.</p></header>
+  {% if error %}<div class="error" role="alert">{{ error }}</div>{% endif %}
+  {% if resultado %}<section class="resultado {% if resultado == 'NO APTO' %}no{% endif %}" role="status" aria-live="polite">Predicción del modelo<strong>{{ resultado }}</strong></section>{% endif %}
+  <form method="post">
+    <p class="nota">Todos los campos son obligatorios. Introduce 0 o 1 según la codificación del dataset original. Conservamos sus nombres para facilitar la comparación.</p>
+    <div class="campos">{% for variable in variables %}<div>
+      <label for="{{ variable }}">{{ variable }}</label>
+      <input id="{{ variable }}" name="{{ variable }}" type="number" min="0" max="1" step="1" required value="{{ valores.get(variable, '') }}">
+    </div>{% endfor %}</div>
+    <button type="submit">Evaluar lugar</button>
+  </form>
+  <p class="nota">El resultado es una estimación aprendida de un conjunto pequeño de lugares; puede equivocarse ante situaciones nuevas.</p>
+</main></body></html>
